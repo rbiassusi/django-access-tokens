@@ -12,3 +12,4 @@ build
 MANIFEST
 venv
 test.db
+.idea
