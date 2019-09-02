@@ -100,7 +100,7 @@ def _is_sub_scope(scope, parent_scope):
             if all(
                 parent_model_grant_part == model_grant_part
                 for model_grant_part, parent_model_grant_part
-                in izip_longest(
+                in zip_longest(
                     model_grant,
                     parent_model_grant,
                 )
@@ -155,7 +155,7 @@ class ScopeSerializer(object):
         return [
             (
                 self.serialize_model_grant(model_grant),
-                map(self.serialize_permission_grant, permissions_grant),
+                list(map(self.serialize_permission_grant, permissions_grant)),
             )
             for model_grant, permissions_grant
             in scope
@@ -182,7 +182,7 @@ class ScopeSerializer(object):
         return [
             (
                 self.deserialize_model_grant(serialized_model_grant),
-                map(self.deserialize_permission_grant, serialized_permissions_grant),
+                list(map(self.deserialize_permission_grant, serialized_permissions_grant)),
             )
             for serialized_model_grant, serialized_permissions_grant
             in serialized_scope
